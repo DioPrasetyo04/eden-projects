@@ -21,7 +21,38 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'avatar',
+        'address',
+        'date_of_birth',
+        'religion_id',
+        'is_active',
     ];
+
+    public function religion()
+    {
+        return $this->belongsTo(Religion::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function membership()
+    {
+        return $this->hasOne(Membership::class);
+    }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
